@@ -1,62 +1,48 @@
-# TagGPT: Large Language Models are Zero-shot Multimodal Taggers
-TagGPT is a fully automated system capable of tag extraction and multimodal tagging in a completely zero-shot fashion, produced by **QQ-ARC Joint Lab at Tencent PCG**.
-
-
-<a href='https://huggingface.co/spaces/TencentARC/TagGPT'><img src='https://img.shields.io/badge/%F0%9F%A4%97-Open%20in%20Spaces-blue'></a> <a href='https://arxiv.org/abs/2304.03022'><img src='https://img.shields.io/badge/arXiv-Tech%20Report-Green'></a>
+# NDBS TaGPT
+NDBS TagGPT is a WIP auto-label solution for NDBS. It is based on the paper [TagGPT: Large Language Models are Zero-shot Multimodal Taggers](https://arxiv.org/abs/2304.03022) and the related TagGPT source code - Although 95% have changed.
 
 
 ## 🔧 Dependencies
-
-- Python >= 3.7
-- PyTorch == 2.0.0
-- transformers==4.27.4
+See requirements.txt for details.
 
 ```bash
-pip install -r requirements.txt
+# after setting up a virtual environment
+conda install --file requirements.txt
 ```
 
-## 💻 How to use TagGPT
-
-### Step 1: Tagging system construction
-You need a batch of data to build your tagging system.
-Here, we can use the Kuaishou open source data, which you can download [here](https://pan.baidu.com/s/1v6x14o5K9IuM3A-IS29UoA?pwd=ihc2#list/path=%2F) (password: ihc2).
-
-First, you can place the data in the './data/' folder and format it with the following command.
+### Help
+Run the following command to get help on arguments:
 ```bash
-python ./scripts/main.py --data_path ./data/222k_kw.ft --func data_format
+python main.py --help
 ```
 
-Then, you can use the following command to generate candidate tags based on LLMs.
+### Config
+Make sure to add your own config.cfg file (based on the structure in example-config.fg). Add your OpenAI key here.
+
+### Step 0: Data preparation
+Place the data (test_data.xlsx - ATT: Thor Hauberg if you haven't recieved it).
+
+### Step 1: Run the script
 ```bash
-python ./scripts/main.py --data_path ./data/sentences.txt --func tag_gen --openai_key "put your own key here" --gen_feq 5
+python TaGPT/main.py
 ```
 
-Next, the tagging system can be obtained by post-processing.
+### Step 2: Evaluate the results in the 'results' folder
 ```bash
-python ./scripts/main.py --data_path ./data/tag_gen.txt --func posterior_process
+ls results
 ```
 
-### Step 2: Data tagging
-TagGPT can assign tags to the given samples based on the built tagging system, and you can adapt your data to what './data/examples.csv looks like.
+## TODO
+- [ ] Add relevant examples (See TaGPT/examples.py)
+- [ ] Implement improved preprocessing to reduce errors
+- [ ] Virtually everything else
 
-And TagGPT provides two different tagging paradigms:
-1. Generative tagger
+<br>
+<br>
 
-```bash
-python main.py --data_path ../data/examples.csv --tag_path ../data/final_tags.csv --func selective_tagger --openai_key "put your own key here"
-```
-2. Selective tagger
-
-```bash
-python main.py --data_path ../data/examples.csv --tag_path ../data/final_tags.csv --func generative_tagger --openai_key "put your own key here"
+# 📜 Citation for original paper
 ```
 
-## 🤗 Acknowledgements
-We appreciate the open source of the following projects: Kuaishou, Hugging Face, LangChain.
-
-## 📖 Citation
-If you find this work useful for your research or applications, please cite our technical report:
-```
 @article{li2023taggpt,
   title={TagGPT: Large Language Models are Zero-shot Multimodal Taggers},
   author={Li, Chen and Ge, Yixiao and Mao, Jiayong and Li, Dian and Shan, Ying},
@@ -64,6 +50,3 @@ If you find this work useful for your research or applications, please cite our 
   year={2023}
 }
 ```
-
-## 📧 Contact Information
-For help or issues using the TagGPT, please submit a GitHub issue.
