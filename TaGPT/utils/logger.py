@@ -7,14 +7,14 @@ from functools import wraps
 
 
 # logging paths
-LOGS_DIR = Path(__file__).parent.parent / "data/logs"
+LOGS_DIR = Path(__file__).parent.parent / "logs"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # setting for stdout and file logging
 logger = logging.getLogger(__name__)
 stdout_handler = RichHandler()
-file_handler = logging.FileHandler(f"{LOGS_DIR}/debug.log")
+file_handler = logging.FileHandler(f"{LOGS_DIR}/console.log")
 
 # logging levels
 logger.setLevel(logging.DEBUG)

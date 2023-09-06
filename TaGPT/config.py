@@ -8,23 +8,34 @@ from datetime import datetime
 
 parser = ArgumentParser()
 parser.add_argument(
-    "--data_path", type=str, help="data_path", default="data/test_data.xlsx"
+    "--data_path",
+    type=str,
+    help="The path to load data from",
+    default="data/test_data.xlsx",
 )
-parser.add_argument("--tag_path", type=str, help="tag_path", default="")
+parser.add_argument(
+    "--tag_path",
+    type=str,
+    help="Not currently in use. The idea is to add a pre-defined list of tags.",
+    default="",
+)
 parser.add_argument(
     "--domain",
     type=str,
-    help="domain of the data, e.g., manufacturing, education, etc.",
-    default="manufacturing",
+    help="Domain of the data, e.g., Manufacturing, education, etc. Used to fetch corresponding n-shot examples and modify the system prompt",
+    default="Manufacturing",
 )
 parser.add_argument(
-    "--n_examples", type=int, help="number of examples to show", default=10
+    "--n_examples",
+    type=int,
+    help="number of in-prompt n-shot examples to add to query",
+    default=10,
 )
 parser.add_argument(
     "--save_path",
     type=str,
     help="path to save the results",
-    default=f"results/tagpt-{datetime.now().strftime('%Y-%m-%d-%H-%M')}.csv",
+    default=f"results/TAGPT-{datetime.now().strftime('%Y-%m-%d-%H-%M')}.csv",
 )
 
 args = parser.parse_args()
@@ -37,7 +48,7 @@ N_EXAMPLES = args.n_examples
 
 
 ####################
-# Secrets config
+# Secrets & model config
 ####################
 
 config = ConfigParser()
@@ -47,6 +58,7 @@ if not config["LLM"].get("API_KEY"):
 
 
 API_KEY = config["LLM"]["API_KEY"]
+
 MODEL = config["LLM"]["MODEL"]
 TEMPERATURE = float(config["LLM"]["TEMPERATURE"])
 N = int(config["LLM"]["N"])

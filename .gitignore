@@ -1,4 +1,5 @@
 __pycache__
 config.cfg
 data/*
-*/data/logs/*
+*/logs/*
+results/*

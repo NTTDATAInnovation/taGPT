@@ -1,9 +1,9 @@
 import re
-import inspect
+from inspect import stack
 
 from utils.logger import logger
 
-list_finder = re.compile(r"[\{\[](.*?)[\{\]]")
+list_finder = re.compile(r"[\*'\"]?[\{\[](.*?)[\{\]][\*'\"]?")
 
 
 def _preprocess(data):
@@ -13,17 +13,20 @@ def _preprocess(data):
 def _postprocess(data: dict) -> dict:
     logger.info(data)
     try:
-        lists = list_finder.findall(data["tags"])
-        cleaned_tags = [
-            e.strip().strip('"').strip("'") for e in lists[-1].split(",")
-        ]
+        if lists := list_finder.findall(data["tags"]):
+            cleaned_tags = [
+                (e.strip().strip('"').strip("'")) for e in lists[-1].split(",")
+            ]
 
-        logger.info(cleaned_tags)
-        data["tags"] = cleaned_tags
+            logger.info(cleaned_tags)
+            data["tags"] = cleaned_tags
 
     except Exception as e:
         logger.info(
-            f"FAILED in '{inspect.stack()[0][3]}' | {e} | Input: {data}"
+            f"FAILED in '{stack()[0][3]}' | "
+            + f"{e.__class__.__name__} | "
+            + f"Input: {data}\n"
+            + f"{e.with_traceback()}"
         )
         data["tags"] = []
     return data

@@ -6,11 +6,11 @@ from openai import ChatCompletion
 
 class OPENAICaller(AbstractAPICaller):
     @staticmethod
-    def run_llm(sentence):
+    def query(msg):
         return (
             ChatCompletion.create(
                 model=MODEL,
-                messages=[{"role": "user", "content": sentence}],
+                messages=[{"role": "user", "content": msg}],
                 temperature=TEMPERATURE,
                 n=N,
             )

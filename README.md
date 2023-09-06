@@ -1,5 +1,5 @@
-# NDBS TaGPT
-NDBS TagGPT is a WIP auto-label solution for NDBS. It is based on the paper [TagGPT: Large Language Models are Zero-shot Multimodal Taggers](https://arxiv.org/abs/2304.03022) and the related TagGPT source code - Although 95% have changed.
+# NDBS TAGPT
+NDBS TAGPT is a WIP auto-label solution for NDBS, to be used as a sample project in the IBM AI CoE.
 
 
 ## 🔧 Dependencies
@@ -24,23 +24,23 @@ Place the data (test_data.xlsx - ATT: Thor Hauberg if you haven't recieved it).
 
 ### Step 1: Run the script
 ```bash
-python TaGPT/main.py
+python tagpt/main.py
 ```
 
 ### Step 2: Evaluate the results in the 'results' folder
+By default, the output .csv. file is saved as 'tagpt-<datetime>.csv.
 ```bash
 ls results
 ```
 
 ## TODO
-- [ ] Add relevant examples (See TaGPT/examples.py)
-- [ ] Implement improved preprocessing to reduce errors
-- [ ] Virtually everything else
+- [ ] Virtually everything
 
 <br>
 <br>
 
 # 📜 Citation for original paper
+The original idea is based on the paper [TagGPT: Large Language Models are Zero-shot Multimodal Taggers](https://arxiv.org/abs/2304.03022) and the related TagGPT source code - Although 99% have changed.
 ```
 
 @article{li2023taggpt,

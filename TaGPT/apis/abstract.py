@@ -1,7 +1,10 @@
 from abc import ABC, abstractmethod
+from inspect import stack
 
 
 class AbstractAPICaller(ABC):
     @abstractmethod
-    def run_llm(sentence):
-        raise NotImplementedError("Abstract method run_llm not implemented")
+    def query(msg):
+        raise NotImplementedError(
+            f"Abstract method '{stack()[0][3]}' not implemented"
+        )

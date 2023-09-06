@@ -1,1 +1,1 @@
-from apis.api_openai import OPENAICaller  # noqa
+from apis.openai import OPENAICaller  # noqa
