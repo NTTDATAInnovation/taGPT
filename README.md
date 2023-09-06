@@ -10,37 +10,40 @@ See requirements.txt for details.
 conda install --file requirements.txt
 ```
 
-### Help
+## Help
 Run the following command to get help on arguments:
 ```bash
 python main.py --help
 ```
 
-### Config
+## Config
 Make sure to add your own config.cfg file (based on the structure in example-config.fg). Add your OpenAI key here.
 
-### Step 0: Data preparation
+## Usage
+
+#### Step 0/2: Data preparation
 Place the data (test_data.xlsx - ATT: Thor Hauberg if you haven't recieved it).
 
-### Step 1: Run the script
+#### Step 1/2: Run the script
 ```bash
 python tagpt/main.py
 ```
 
-### Step 2: Evaluate the results in the 'results' folder
-By default, the output .csv. file is saved as 'tagpt-<datetime>.csv.
+#### Step 2/2: Evaluate the results in the 'results' folder
+By default, the output .csv. file is saved as `tagpt-\<datetime>.csv`
 ```bash
 ls results
 ```
 
 ## TODO
-- [ ] Virtually everything
 
-<br>
-<br>
+- [ ] Change to langchain
+- [ ] Virtually everything else (this is a PoC)
 
-# 📜 Citation for original paper
-The original idea is based on the paper [TagGPT: Large Language Models are Zero-shot Multimodal Taggers](https://arxiv.org/abs/2304.03022) and the related TagGPT source code - Although 99% have changed.
+
+
+## Inspiration
+The original idea is based on the paper [TagGPT: Large Language Models are Zero-shot Multimodal Taggers](https://arxiv.org/abs/2304.03022) - Although 99% have changed.
 ```
 
 @article{li2023taggpt,
