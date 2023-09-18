@@ -4,7 +4,8 @@ from langchain.prompts import PromptTemplate
 
 from examples import EXAMPLES
 from prompts import SYSTEM_PROMPT, INPUT_VARIABLES
-from apis import OPENAICaller
+from apis import WATSONXCaller
+
 from config import DOMAIN, N_EXAMPLES
 from processing import _preprocess, _postprocess
 from utils import log_pipeline
@@ -18,22 +19,12 @@ class GenTagger:
             EXAMPLES[DOMAIN], k=min(N_EXAMPLES, len(EXAMPLES[DOMAIN]))
         )
 
-        template = PromptTemplate(
+        promtTemplate = PromptTemplate(
             input_variables=INPUT_VARIABLES, template=SYSTEM_PROMPT
         )
 
-        prompt = template.format(
-            domain=DOMAIN,
-            examples=examples,
-            material_description=msg[
-                "Material description"
-            ],  # TODO: Make dynamic
-            industry_std_description=msg[
-                "Industry Std Desc."
-            ],  # TODO: Make dynamic
-        )
-        response = OPENAICaller.query(prompt)
-
+        response = WATSONXCaller.query(promtTemplate, msg["Material description"])
+        
         return {"tags": response} | msg
 
     @classmethod

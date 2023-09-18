@@ -1,4 +1,4 @@
-import openai
+# import openai
 
 from taggers import GenTagger
 from config import API_KEY, DATA_PATH, SAVE_PATH
@@ -6,7 +6,7 @@ from i_o import load_data, save_data
 from utils.logger import logger, log_pipeline
 
 
-openai.api_key = API_KEY
+# openai.api_key = API_KEY
 
 
 @log_pipeline
