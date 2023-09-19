@@ -3,3 +3,4 @@ config.cfg
 data/*
 */logs/*
 results/*
+venv
