@@ -2,10 +2,12 @@ from tqdm import tqdm
 import random
 from langchain.prompts import PromptTemplate
 
-from examples import EXAMPLES
+# from examples import EXAMPLES
 from prompts import SYSTEM_PROMPT, INPUT_VARIABLES
-from apis import OPENAICaller
-from config import DOMAIN, N_EXAMPLES
+from apis import WATSONXCaller
+from utils.logger import logger
+
+# from config import DOMAIN, N_EXAMPLES
 from processing import _preprocess, _postprocess
 from utils import log_pipeline
 
@@ -14,25 +16,14 @@ class GenTagger:
     @staticmethod
     @log_pipeline
     def predict(msg):
-        examples = random.sample(
-            EXAMPLES[DOMAIN], k=min(N_EXAMPLES, len(EXAMPLES[DOMAIN]))
-        )
+        # examples = random.sample(
+        #     EXAMPLES[DOMAIN], k=min(N_EXAMPLES, len(EXAMPLES[DOMAIN]))
+        # )
 
-        template = PromptTemplate(
-            input_variables=INPUT_VARIABLES, template=SYSTEM_PROMPT
-        )
+        template = PromptTemplate.from_template(SYSTEM_PROMPT)
 
-        prompt = template.format(
-            domain=DOMAIN,
-            examples=examples,
-            material_description=msg[
-                "Material description"
-            ],  # TODO: Make dynamic
-            industry_std_description=msg[
-                "Industry Std Desc."
-            ],  # TODO: Make dynamic
-        )
-        response = OPENAICaller.query(prompt)
+        response = WATSONXCaller.query(template, msg["Material description"])
+        logger.info(f"RESPONSE: {response}")
 
         return {"tags": response} | msg
 
