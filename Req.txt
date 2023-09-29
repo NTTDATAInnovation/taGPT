@@ -1,17 +1,11 @@
-
-
-
 # after setting up a virtual environment
  python-dotenv
  ibm-watson-machine-learning
- pydantic>=1.10.0 
+ pydantic
  langchain 
-
-
  rich
  pandas
  openpyxl 
-
  ibm-generative-ai
  ibm-generative-ai[langchain]
  pypdf
@@ -19,6 +13,8 @@
  transformers[torch]
  sentence-transformers
  Flask
+ flask-restful
+ flask-httpauth
  cachetools
  unstructured
  from-root
@@ -27,6 +23,4 @@
  text-extensions-for-pandas
  ibm-watson
  jupyterlab
-
  matplotlib
- ibm-watson-machine-learning
