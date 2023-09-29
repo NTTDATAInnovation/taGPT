@@ -3,11 +3,11 @@ NDBS TAGPT is a WIP auto-label solution for NDBS, to be used as a sample project
 
 
 ## 🔧 Dependencies
-See req.txt for required packages.
+See Req.txt for required packages.
 
 ```bash
 # after setting up a virtual environment
-pip install -r req.txt
+pip install -r Req.txt
 ```
 
 ## Help
