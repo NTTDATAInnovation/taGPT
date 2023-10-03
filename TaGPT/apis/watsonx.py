@@ -41,7 +41,7 @@ class WATSONXCaller(AbstractAPICaller):
         }
 
         wxModel = Model(
-        model_id=ModelTypes.FLAN_UL2, 
+        model_id=ModelTypes.GRANITE_13B_INSTRUCT, 
         params=params, 
         credentials=creds,
         project_id=PROJECT_ID)
@@ -49,6 +49,7 @@ class WATSONXCaller(AbstractAPICaller):
         llm_model = WatsonxLLM(model=wxModel)
         chain = LLMChain(llm=llm_model, prompt=prompt, verbose=True)       
         
-        test = chain.run(text)
-        return test
+        return chain.run(text)
+        #test = chain.run(text)
+        #return test
     

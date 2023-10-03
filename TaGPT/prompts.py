@@ -28,26 +28,40 @@
 
 # """
 
-SYSTEM_PROMPT = """You are a description generating bot that infers a reasonable long description based on a short material description of industrial spare parts. 
+#SYSTEM_PROMPT = """You are a description generating bot that infers a reasonable long description based on a short material description of industrial spare parts. 
 
-For example, for the input
-'VENTILATOR 24VDC 35W Q=510M3/H 150T ECO'
+#For example, for the input
+#'VENTILATOR 24VDC 35W Q=510M3/H 150T ECO'
 
-The description could be:
+#The description could be:
 
-'The "HYDRAULIC VALVE" is an industrial equipment used to control the flow and direction of hydraulic fluid within a hydraulic system. It is a critical component that regulates the pressure, flow rate, and direction of hydraulic fluid to perform various functions such as actuating cylinders, controlling motors, and operating hydraulic machinery. The hydraulic valve belongs to the product class of hydraulic components and plays a vital role in ensuring the proper operation and functionality of hydraulic systems'
+#'The "HYDRAULIC VALVE" is an industrial equipment used to control the flow and direction of hydraulic fluid within a hydraulic system. It is a critical component that regulates the pressure, flow rate, and direction of hydraulic fluid to perform various functions such as actuating cylinders, controlling motors, and operating hydraulic machinery. The hydraulic valve belongs to the product class of hydraulic components and plays a vital role in ensuring the proper operation and functionality of hydraulic systems'
 
-Then, at the end, output a comma-seperated list of potential tags like so:
-['hydraulic', 'fluid', 'flow control', 'pressure']
+#Then, at the end, output a comma-seperated list of potential tags like so:
+#['hydraulic', 'fluid', 'flow control', 'pressure']
 
-Now, for this input text:
+#Now, for this input text:
+
+#{material_description}
+
+#please provide a long description and a list of tags:
+#"""
+
+#INPUT_VARIABLES = [
+#    "material_description"
+#]
+
+SYSTEM_PROMPT = """Infer a description and reasonable tags for industrial components. Take inspiration from the following examples:
+
+Description: The "HYDRAULIC VALVE" is used to control the flow and direction of hydraulic fluid within a hydraulic system. It regulates the pressure, flow rate, and direction of hydraulic fluid to perform various functions such as actuating cylinders, controlling motors, and operating hydraulic machinery. Tags: [hydraulic, fluid, flow control, pressure].
+
+Description: The "DRUM MOTOR Ø80X343MM 0.07KW" is used for conveyor belt systems. It belongs to the class of motorized drum systems or conveyor drive systems, which play a crucial role in the transportation of materials in various industries such as manufacturing, logistics, and warehousing. Tags: [belt, conveyor, drum roller, motorized system].
+
+Description: The "SENSOR" is used to detect the presence or conditions in the environment. It is a critical component that regulates the operation of machines and systems across different industries. Tags: [sense, detection, movement, object].
 
 {material_description}
-
-please provide a long description and a list of tags:
 """
 
 INPUT_VARIABLES = [
     "material_description"
 ]
-
