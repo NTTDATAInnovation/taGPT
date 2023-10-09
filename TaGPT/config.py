@@ -62,3 +62,7 @@ API_KEY = config["LLM"]["API_KEY"]
 MODEL = config["LLM"]["MODEL"]
 TEMPERATURE = float(config["LLM"]["TEMPERATURE"])
 N = int(config["LLM"]["N"])
+
+IBM_CLOUD_API_KEY = config["WATSONX"]["IBM_CLOUD_API_KEY"]
+WATSONX_AI_ENDPOINT = config["WATSONX"]["WATSONX_AI_ENDPOINT"]
+PROJECT_ID = config["WATSONX"]["PROJECT_ID"]
