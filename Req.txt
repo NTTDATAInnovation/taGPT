@@ -1,4 +1,3 @@
-# after setting up a virtual environment
  python-dotenv
  ibm-watson-machine-learning
  pydantic
